@@ -1,11 +1,12 @@
 <project name="mbs2.predavanja" default="build.all">
-  <property file="build.properties"/>
+  <property file="tomee.properties"/>
   <property name="javac.debug" value="on"/>
   <property environment="env"/>
   
   <path id="runtime.classpath">
     <fileset dir="lib/runtime" includes="**/*.jar"/>
   </path>
+  <!--
   <path id="jpa.classpath">
     <fileset dir="client-libs/hibernate" includes="*.jar"/>
     <fileset dir="client-libs/mysql" includes="*.jar"/>
@@ -14,6 +15,7 @@
     <path refid="runtime.classpath"/>
     <fileset dir="compile-libs" includes="*.jar"/>
   </path>
+  -->
 
   <target name="compile">
     <mkdir dir="bin"/>
