@@ -1,0 +1,49 @@
+<project name="mbs2.predavanja" default="build.all">
+  <property file="build.properties"/>
+  <property name="javac.debug" value="on"/>
+  <property environment="env"/>
+  
+  <path id="runtime.classpath">
+    <fileset dir="runtime-libs" includes="*.jar"/>
+  </path>
+  <path id="hibernate.classpath">
+    <fileset dir="client-libs/hibernate" includes="*.jar"/>
+    <fileset dir="client-libs/mysql" includes="*.jar"/>
+  </path>
+  <path id="compile.classpath">
+    <path refid="runtime.classpath"/>
+    <fileset dir="compile-libs" includes="*.jar"/>
+  </path>
+
+  <target name="compile">
+    <mkdir dir="bin"/>
+    <mkdir dir="dist"/>
+    <javac srcdir="src" destdir="bin" classpathref="compile.classpath" includeantruntime="false"/>
+  </target>
+
+  <target name="pr01" depends="compile">
+    <mkdir dir="dist/pr01"/>
+    <jar destfile="dist/pr01/Server.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr01/ServerMain.class"/>
+        <include name="mbs2/pr01/Server.class"/>
+        <include name="mbs2/pr01/ServerI.class"/>
+      </zipfileset>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr01.ServerMain"/>
+      </manifest>
+    </jar>
+    <jar destfile="dist/pr01/Client.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr01/Client.class"/>
+        <include name="mbs2/pr01/ServerI.class"/>
+      </zipfileset>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr01.Client"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="build.all" depends="pr01" />
+
+</project>

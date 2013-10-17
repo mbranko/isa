@@ -1,4 +1,4 @@
-mbs2
+MBS2
 ====
 
-Primeri sa predavanja iz Mrezno baziranih sistema
+Primeri sa predavanja iz Mrežno baziranih sistema 2.
