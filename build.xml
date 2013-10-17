@@ -4,9 +4,9 @@
   <property environment="env"/>
   
   <path id="runtime.classpath">
-    <fileset dir="runtime-libs" includes="*.jar"/>
+    <fileset dir="lib/runtime" includes="**/*.jar"/>
   </path>
-  <path id="hibernate.classpath">
+  <path id="jpa.classpath">
     <fileset dir="client-libs/hibernate" includes="*.jar"/>
     <fileset dir="client-libs/mysql" includes="*.jar"/>
   </path>
@@ -71,7 +71,36 @@
     <copy file="src/mbs2/pr02/client.policy" todir="dist/pr02"/>
   </target>
 
+  <target name="pr03" depends="compile">
+    <mkdir dir="dist/pr03"/>
+    <jar destfile="dist/pr03/FileClient.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr03/FileClient.class"/>
+      </zipfileset>
+      <zipfileset src="lib/runtime/jndi/fscontext.jar"/>
+      <zipfileset src="lib/runtime/jndi/providerutil.jar"/>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr03.FileClient"/>
+      </manifest>
+    </jar>
+    <jar destfile="dist/pr03/DNSClient.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr03/DNSClient.class"/>
+      </zipfileset>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr03.DNSClient"/>
+      </manifest>
+    </jar>
+    <jar destfile="dist/pr03/LDAPClient.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr03/LDAPClient.class"/>
+      </zipfileset>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr03.LDAPClient"/>
+      </manifest>
+    </jar>
+  </target>
   
-  <target name="build.all" depends="pr01,pr02" />
+  <target name="build.all" depends="pr01,pr02,pr03" />
 
 </project>
