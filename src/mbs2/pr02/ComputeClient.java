@@ -1,26 +1,24 @@
-package mbs2.pr01;
+package mbs2.pr02;
 
+import java.math.BigDecimal;
 import java.rmi.Naming;
+import java.rmi.RMISecurityManager;
 
-public class ServerMain {
+public class ComputeClient {
 
   public static void main(String[] args) {
+    setRmiCodebase();
+    System.setSecurityManager(new RMISecurityManager());
     try {
-      setRmiCodebase();
-      Server server = new Server();      
-      Naming.rebind("ServerObject", server);
-      
-      // ko ne zeli da nasledi UnicastRemoteObject moze to ovako da uradi:
-      // Server server = new Server();
-      // ServerI stub = (ServerI)UnicastRemoteObject.exportObject(server, 0);
-      // Naming.rebind("ServerObject", stub);
-      
-      System.out.println("Server started.");
+      Compute comp = (Compute)Naming.lookup("//localhost:1099/Compute");
+      Pi task = new Pi(100);
+      BigDecimal pi = (BigDecimal)comp.executeTask(task);
+      System.out.println(pi);
     } catch (Exception ex) {
       ex.printStackTrace();
     }
   }
-  
+
   /**
    * RMI registry mora da zna gde ce pronaci klase koje cine server. Ta lokacija
    * se definise sistemskim propertijem pod nazivom java.rmi.server.codebase.
@@ -41,8 +39,8 @@ public class ServerMain {
     if (codebase != null)
       return;
     
-    String testFile = "/" + ServerMain.class.getName().replace('.', '/') + ".class";
-    String url = ServerMain.class.getResource(testFile).toString();
+    String testFile = "/" + ComputeClient.class.getName().replace('.', '/') + ".class";
+    String url = ComputeClient.class.getResource(testFile).toString();
     if (url.startsWith("jar:")) {
       int pos = url.indexOf(".jar");
       codebase = "file://" + url.substring(9, pos + 4);

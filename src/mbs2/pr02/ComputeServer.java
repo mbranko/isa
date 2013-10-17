@@ -1,26 +1,32 @@
-package mbs2.pr01;
+package mbs2.pr02;
 
 import java.rmi.Naming;
+import java.rmi.RMISecurityManager;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
-public class ServerMain {
+public class ComputeServer extends UnicastRemoteObject implements Compute {
 
+  public ComputeServer() throws RemoteException {
+    super();
+  }
+  
+  public Object executeTask(Task t) {
+    return t.execute();
+  }
+  
   public static void main(String[] args) {
+    setRmiCodebase();
+    System.setSecurityManager(new RMISecurityManager());
     try {
-      setRmiCodebase();
-      Server server = new Server();      
-      Naming.rebind("ServerObject", server);
-      
-      // ko ne zeli da nasledi UnicastRemoteObject moze to ovako da uradi:
-      // Server server = new Server();
-      // ServerI stub = (ServerI)UnicastRemoteObject.exportObject(server, 0);
-      // Naming.rebind("ServerObject", stub);
-      
-      System.out.println("Server started.");
+      Compute engine = new ComputeServer();
+      Naming.rebind("//localhost:1099/Compute", engine);
+      System.out.println("ComputeServer started.");
     } catch (Exception ex) {
       ex.printStackTrace();
     }
   }
-  
+
   /**
    * RMI registry mora da zna gde ce pronaci klase koje cine server. Ta lokacija
    * se definise sistemskim propertijem pod nazivom java.rmi.server.codebase.
@@ -41,11 +47,13 @@ public class ServerMain {
     if (codebase != null)
       return;
     
-    String testFile = "/" + ServerMain.class.getName().replace('.', '/') + ".class";
-    String url = ServerMain.class.getResource(testFile).toString();
+    String testFile = "/" + ComputeServer.class.getName().replace('.', '/') + ".class";
+    String url = ComputeServer.class.getResource(testFile).toString();
     if (url.startsWith("jar:")) {
       int pos = url.indexOf(".jar");
+      int lastSlash = url.lastIndexOf('/', pos);
       codebase = "file://" + url.substring(9, pos + 4);
+      codebase += " file://" + url.substring(9, lastSlash+1) + "Client.jar";
     } else if (url.startsWith("file:")) {
       int pos = url.indexOf("bin");
       codebase = "file://" + url.substring(5, pos+4);

@@ -44,6 +44,34 @@
     </jar>
   </target>
 
-  <target name="build.all" depends="pr01" />
+  <target name="pr02" depends="compile">
+    <mkdir dir="dist/pr02"/>
+    <jar destfile="dist/pr02/Server.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr02/Compute.class"/>
+        <include name="mbs2/pr02/ComputeServer.class"/>
+        <include name="mbs2/pr02/Task.class"/>
+      </zipfileset>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr02.ComputeServer"/>
+      </manifest>
+    </jar>
+    <jar destfile="dist/pr02/Client.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr02/Compute.class"/>
+        <include name="mbs2/pr02/Task.class"/>
+        <include name="mbs2/pr02/Pi.class"/>
+        <include name="mbs2/pr02/ComputeClient.class"/>
+      </zipfileset>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr02.ComputeClient"/>
+      </manifest>
+    </jar>
+    <copy file="src/mbs2/pr02/server.policy" todir="dist/pr02"/>
+    <copy file="src/mbs2/pr02/client.policy" todir="dist/pr02"/>
+  </target>
+
+  
+  <target name="build.all" depends="pr01,pr02" />
 
 </project>
