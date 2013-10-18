@@ -1,4 +1,4 @@
-package mbs2.pr06;
+package mbs2.pr07;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,16 +16,17 @@ public class CountClient {
     try {
       Logger.getLogger("").setLevel(Level.OFF);
       Context ctx = new InitialContext();
-      Count c = (Count)ctx.lookup("CountBean6Remote");
+      Count c = (Count)ctx.lookup("CountBean7Remote");
   
       for (int i = 0; i < 10; i++) {
         System.out.println("count: " + c.count());
         Thread.sleep(100);
       }
+      
+      c.remove();
   
     } catch (Exception ex) {
       ex.printStackTrace();
     }
   }
 }
-

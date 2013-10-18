@@ -4,7 +4,7 @@ import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateful;
 
-@Stateful
+@Stateful(name="CountBean6")
 @Remote(Count.class)
 @Local(CountLocal.class)
 public class CountBean implements Count {
