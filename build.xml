@@ -5,6 +5,7 @@
   
   <path id="runtime.classpath">
     <fileset dir="lib/runtime" includes="**/*.jar"/>
+    <fileset dir="${tomee.dir}" includes="lib/*.jar"/>
   </path>
   <!--
   <path id="jpa.classpath">
@@ -103,6 +104,56 @@
     </jar>
   </target>
   
-  <target name="build.all" depends="pr01,pr02,pr03" />
+  <target name="pr04" depends="compile">
+    <mkdir dir="dist/pr04"/>
+    <jar destfile="dist/pr04/Client.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr04/Client.class"/>
+        <include name="mbs2/pr04/ServerI.class"/>
+      </zipfileset>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr04.Client"/>
+      </manifest>
+    </jar>
+    <jar destfile="dist/pr04/Server.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr04/Server.class"/>
+        <include name="mbs2/pr04/ServerI.class"/>
+      </zipfileset>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr04.Server"/>
+      </manifest>
+    </jar>
+  </target>
+  
+  <target name="pr05" depends="compile">
+    <mkdir dir="dist/pr05"/>
+    <war destfile="dist/pr05/pr05.war" webxml="src/mbs2/pr05/web.xml">
+      <classes dir="bin">
+        <include name="mbs2/pr05/Hello.class"/>
+        <include name="mbs2/pr05/HelloLocal.class"/>
+        <include name="mbs2/pr05/HelloBean.class"/>
+      </classes>
+    </war>
+    <jar destfile="dist/pr05/Client.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr05/HelloClient.class"/>
+        <include name="mbs2/pr05/Hello.class"/>
+      </zipfileset>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="openejb-client-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr05.HelloClient"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05"/>
+  
+  <target name="deploy" depends="build.all">
+    <copy todir="${tomee.dir}/webapps">
+      <fileset dir="dist" includes="**/*.war"/>
+    </copy>
+  </target>
 
 </project>

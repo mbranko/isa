@@ -28,6 +28,6 @@ Client.java     - klijentski program
 
 4. Pokretanje primera
 ---------------------
-[dist/pr01]$ rmiregistry
+[dist/pr01]$ rmiregistry -J-Djava.rmi.server.codebase=file://full-path-to-Server.jar
 [dist/pr01]$ java -jar Server.jar
 [dist/pr01]$ java -jar Client.jar
