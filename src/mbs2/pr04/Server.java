@@ -45,4 +45,6 @@ public class Server extends UnicastRemoteObject implements ServerI {
     System.setProperty("java.rmi.server.codebase", codebase);
     System.setProperty("java.rmi.server.useCodebaseOnly", "true");
   }
+
+  private static final long serialVersionUID = 43279992486022972L;
 }

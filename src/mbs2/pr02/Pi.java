@@ -73,4 +73,6 @@ public class Pi implements Task {
   private static final int roundingMode = BigDecimal.ROUND_HALF_EVEN;
   /** trazeni broj decimala */
   private int digits;
+
+  private static final long serialVersionUID = 3720466846834461699L;
 }

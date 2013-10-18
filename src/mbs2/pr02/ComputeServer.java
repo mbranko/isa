@@ -63,4 +63,6 @@ public class ComputeServer extends UnicastRemoteObject implements Compute {
     System.setProperty("java.rmi.server.codebase", codebase);
     System.setProperty("java.rmi.server.useCodebaseOnly", "true");
   }
+
+  private static final long serialVersionUID = 7399672500745174821L;
 }

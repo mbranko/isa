@@ -15,4 +15,5 @@ public class Server extends UnicastRemoteObject implements ServerI {
 
   private int count = 0;
   
+  private static final long serialVersionUID = 8423253694594477374L;
 }
