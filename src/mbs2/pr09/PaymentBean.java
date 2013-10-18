@@ -1,10 +1,10 @@
-package mbs2.pr08;
+package mbs2.pr09;
 
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
-@Stateless(name="PaymentBean8")
+@Stateless(name="PaymentBean9")
 @Local(PaymentLocal.class)
 @Remote(Payment.class)
 public class PaymentBean implements Payment {
