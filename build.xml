@@ -192,7 +192,36 @@
     </jar>
   </target>
 
-  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07"/>
+  <target name="pr08" depends="compile">
+    <mkdir dir="dist/pr08"/>
+    <war destfile="dist/pr08/pr08.war" webxml="src/mbs2/pr08/web.xml">
+      <classes dir="bin">
+        <include name="mbs2/pr08/CreditCard.class"/>
+        <include name="mbs2/pr08/Order.class"/>
+        <include name="mbs2/pr08/Payment.class"/>
+        <include name="mbs2/pr08/PaymentBean.class"/>
+        <include name="mbs2/pr08/PaymentLocal.class"/>
+        <include name="mbs2/pr08/Purchase.class"/>
+        <include name="mbs2/pr08/PurchaseBean.class"/>
+        <include name="mbs2/pr08/PurchaseLocal.class"/>
+      </classes>
+    </war>
+    <jar destfile="dist/pr08/Client.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr08/PurchaseClient.class"/>
+        <include name="mbs2/pr08/Purchase.class"/>
+        <include name="mbs2/pr08/CreditCard.class"/>
+        <include name="mbs2/pr08/Order.class"/>
+      </zipfileset>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="openejb-client-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr08.PurchaseClient"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08"/>
   
   <target name="deploy" depends="build.all">
     <copy todir="${tomee.dir}/webapps">
