@@ -148,7 +148,29 @@
     </jar>
   </target>
 
-  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05"/>
+  <target name="pr06" depends="compile">
+    <mkdir dir="dist/pr06"/>
+    <war destfile="dist/pr06/pr06.war" webxml="src/mbs2/pr06/web.xml">
+      <classes dir="bin">
+        <include name="mbs2/pr06/Count.class"/>
+        <include name="mbs2/pr06/CountLocal.class"/>
+        <include name="mbs2/pr06/CountBean.class"/>
+      </classes>
+    </war>
+    <jar destfile="dist/pr06/Client.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr06/CountClient.class"/>
+        <include name="mbs2/pr06/Count.class"/>
+      </zipfileset>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="openejb-client-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr06.CountClient"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06"/>
   
   <target name="deploy" depends="build.all">
     <copy todir="${tomee.dir}/webapps">
