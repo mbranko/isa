@@ -1,0 +1,10 @@
+<tomee>
+<Resource id="WebShop" type="javax.sql.DataSource">
+  JdbcDriver com.mysql.jdbc.Driver
+  JdbcUrl jdbc:mysql://localhost/mbs2
+  UserName mbs2
+  Password mbs2
+  JtaManaged false
+  DefaultAutoCommit false 
+</Resource>
+</tomee>

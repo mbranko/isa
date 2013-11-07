@@ -480,8 +480,22 @@
     </war>
   </target>
 
+  <target name="pr19" depends="compile">
+    <mkdir dir="dist/pr19"/>
+    <war destfile="dist/pr19/pr19.war" webxml="src/mbs2/pr19/web.xml">
+      <fileset dir="src/mbs2/pr19" includes="*.jsp"/>
+      <classes dir="bin" includes="mbs2/pr19/**/*.class"/>
+      <lib dir="lib/runtime/jdbc" includes="mysql-*.jar"/>
+      <metainf dir="src/mbs2/pr19">
+        <include name="persistence.xml"/>
+      </metainf>
+      <webinf dir="src/mbs2/pr19">
+        <include name="resources.xml"/>
+      </webinf>
+    </war>
+  </target>
   
-  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12,pr13,pr14,pr15,pr16,pr17,pr18"/>
+  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12,pr13,pr14,pr15,pr16,pr17,pr18,pr19"/>
   
   <target name="deploy" depends="build.all">
     <copy todir="${tomee.dir}/webapps">
