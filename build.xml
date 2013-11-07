@@ -461,7 +461,27 @@
     </jar>
   </target>
 
-  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12,pr13,pr14,pr15,pr16,pr17"/>
+  <target name="pr18" depends="compile">
+    <mkdir dir="dist/pr18"/>
+    <war destfile="dist/pr18/pr18.war" webxml="src/mbs2/pr18/web.xml">
+      <classes dir="bin">
+        <include name="mbs2/pr18/CreditCard.class"/>
+        <include name="mbs2/pr18/Logger.class"/>
+        <include name="mbs2/pr18/Order.class"/>
+        <include name="mbs2/pr18/Payment.class"/>
+        <include name="mbs2/pr18/PaymentBean.class"/>
+        <include name="mbs2/pr18/PaymentLocal.class"/>
+        <include name="mbs2/pr18/Purchase.class"/>
+        <include name="mbs2/pr18/PurchaseBean.class"/>
+        <include name="mbs2/pr18/PurchaseLocal.class"/>
+        <include name="mbs2/pr18/PurchaseServlet.class"/>
+      </classes>
+      <fileset dir="src/mbs2/pr18" includes="*.html"/>
+    </war>
+  </target>
+
+  
+  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12,pr13,pr14,pr15,pr16,pr17,pr18"/>
   
   <target name="deploy" depends="build.all">
     <copy todir="${tomee.dir}/webapps">
