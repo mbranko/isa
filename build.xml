@@ -7,21 +7,11 @@
     <fileset dir="lib/runtime" includes="**/*.jar"/>
     <fileset dir="${tomee.dir}" includes="lib/*.jar"/>
   </path>
-  <!--
-  <path id="jpa.classpath">
-    <fileset dir="client-libs/hibernate" includes="*.jar"/>
-    <fileset dir="client-libs/mysql" includes="*.jar"/>
-  </path>
-  <path id="compile.classpath">
-    <path refid="runtime.classpath"/>
-    <fileset dir="compile-libs" includes="*.jar"/>
-  </path>
-  -->
 
   <target name="compile">
     <mkdir dir="bin"/>
     <mkdir dir="dist"/>
-    <javac srcdir="src" destdir="bin" classpathref="compile.classpath" includeantruntime="false"/>
+    <javac srcdir="src" destdir="bin" classpathref="runtime.classpath" includeantruntime="false"/>
   </target>
 
   <target name="pr01" depends="compile">
@@ -305,7 +295,7 @@
 
   <target name="pr12" depends="compile">
     <mkdir dir="dist/pr12"/>
-    <copy todir="bin">
+    <copy todir="bin/mbs2/pr12">
       <fileset dir="src/mbs2/pr12" includes="*.sql"/>
     </copy>
     <war destfile="dist/pr12/pr12.war" webxml="src/mbs2/pr12/web.xml">
@@ -335,7 +325,7 @@
 
   <target name="pr13" depends="compile">
     <mkdir dir="dist/pr13"/>
-    <copy todir="bin">
+    <copy todir="bin/mbs2/pr13">
       <fileset dir="src" includes="mbs2/pr13/*.properties"/>
     </copy>
     <war destfile="dist/pr13/pr13.war" webxml="src/mbs2/pr13/web.xml">
@@ -352,7 +342,7 @@
 
   <target name="pr14" depends="compile">
     <mkdir dir="dist/pr14"/>
-    <copy todir="bin">
+    <copy todir="bin/mbs2/pr14">
       <fileset dir="src/mbs2/pr14" includes="*.sql"/>
     </copy>
     <jar destfile="dist/pr14/pr14.jar">
@@ -372,7 +362,7 @@
   
   <target name="pr15" depends="compile">
     <mkdir dir="dist/pr15"/>
-    <copy todir="bin">
+    <copy todir="bin/mbs2/pr15">
       <fileset dir="src/mbs2/pr15" includes="*.sql"/>
     </copy>
     <jar destfile="dist/pr15/pr15.jar">
@@ -392,7 +382,46 @@
     </jar>
   </target>
 
-  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12,pr13,pr14,pr15"/>
+  <target name="pr16" depends="compile">
+    <mkdir dir="dist/pr16"/>
+    <copy todir="bin/mbs2/pr16">
+      <fileset dir="src/mbs2/pr16" includes="*.sql"/>
+    </copy>
+    <mkdir dir="bin/META-INF"/>
+    <copy todir="bin/META-INF" file="src/mbs2/pr16/persistence.xml"/>
+    <path id="jpa.16">
+      <path refid="runtime.classpath"/>
+      <dirset dir="bin"/>
+    </path>
+    <taskdef name="openjpac" classname="org.apache.openjpa.ant.PCEnhancerTask" classpathref="jpa.16"/>
+    <openjpac>
+      <classpath refid="jpa.16"/>
+    </openjpac>
+    <delete dir="bin/META-INF"/>
+    <jar destfile="dist/pr16/pr16.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr16/Admin.class"/>
+        <include name="mbs2/pr16/Test.class"/>
+        <include name="mbs2/pr16/TestRunner.class"/>
+        <include name="mbs2/util/ScriptRunner.class"/>
+        <include name="mbs2/pr16/init.sql"/>
+      </zipfileset>
+      <zipgroupfileset dir="lib/runtime/jdbc" includes="mysql-connector-java-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="openjpa-asm-shaded-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="commons-lang*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="commons-collections-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="commons-pool-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="serp-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="xbean-*.jar"/>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr16.TestRunner"/>
+      </manifest>
+      <metainf dir="src/mbs2/pr16" includes="persistence.xml"/>
+    </jar>
+  </target>
+
+  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12,pr13,pr14,pr15,pr16"/>
   
   <target name="deploy" depends="build.all">
     <copy todir="${tomee.dir}/webapps">
