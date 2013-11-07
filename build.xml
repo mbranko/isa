@@ -333,7 +333,24 @@
     </jar>
   </target>
 
-  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12"/>
+  <target name="pr13" depends="compile">
+    <mkdir dir="dist/pr13"/>
+    <copy todir="bin">
+      <fileset dir="src" includes="mbs2/pr13/*.properties"/>
+    </copy>
+    <war destfile="dist/pr13/pr13.war" webxml="src/mbs2/pr13/web.xml">
+      <classes dir="bin">
+        <include name="mbs2/pr13/DbServlet.class"/>
+        <include name="mbs2/pr13/ConnectionPool.class"/>
+        <include name="mbs2/pr13/ConnectionPool.properties"/>
+      </classes>
+      <lib dir="lib/runtime/jdbc">
+        <include name="mysql-*.jar"/>
+      </lib>
+    </war>
+  </target>
+
+  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12,pr13"/>
   
   <target name="deploy" depends="build.all">
     <copy todir="${tomee.dir}/webapps">
