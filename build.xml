@@ -6,7 +6,10 @@
   <path id="runtime.classpath">
     <fileset dir="lib/runtime" includes="**/*.jar"/>
     <fileset dir="${tomee.dir}" includes="lib/*.jar"/>
+    <dirset dir="bin"/>
   </path>
+
+  <taskdef name="openjpac" classname="org.apache.openjpa.ant.PCEnhancerTask" classpathref="runtime.classpath"/>
 
   <target name="compile">
     <mkdir dir="bin"/>
@@ -389,13 +392,8 @@
     </copy>
     <mkdir dir="bin/META-INF"/>
     <copy todir="bin/META-INF" file="src/mbs2/pr16/persistence.xml"/>
-    <path id="jpa.16">
-      <path refid="runtime.classpath"/>
-      <dirset dir="bin"/>
-    </path>
-    <taskdef name="openjpac" classname="org.apache.openjpa.ant.PCEnhancerTask" classpathref="jpa.16"/>
     <openjpac>
-      <classpath refid="jpa.16"/>
+      <classpath refid="runtime.classpath"/>
     </openjpac>
     <delete dir="bin/META-INF"/>
     <jar destfile="dist/pr16/pr16.jar">
@@ -421,7 +419,49 @@
     </jar>
   </target>
 
-  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12,pr13,pr14,pr15,pr16"/>
+  <target name="pr17" depends="compile">
+    <mkdir dir="dist/pr17"/>
+    <copy todir="bin/mbs2/pr17">
+      <fileset dir="src/mbs2/pr17" includes="*.sql"/>
+    </copy>
+    <mkdir dir="bin/META-INF"/>
+    <copy todir="bin/META-INF" file="src/mbs2/pr17/persistence.xml"/>
+    <openjpac>
+      <classpath refid="runtime.classpath"/>
+    </openjpac>
+    <delete dir="bin/META-INF"/>
+    <jar destfile="dist/pr17/pr17.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr17/Admin.class"/>
+        <include name="mbs2/pr17/Category.class"/>
+        <include name="mbs2/pr17/CreditCard.class"/>
+        <include name="mbs2/pr17/OrderItem.class"/>
+        <include name="mbs2/pr17/Product.class"/>
+        <include name="mbs2/pr17/ProductImage.class"/>
+        <include name="mbs2/pr17/PurchaseOrder.class"/>
+        <include name="mbs2/pr17/Supplier.class"/>
+        <include name="mbs2/pr17/Test.class"/>
+        <include name="mbs2/pr17/TestRunner.class"/>
+        <include name="mbs2/util/ScriptRunner.class"/>
+        <include name="mbs2/pr17/User.class"/>
+        <include name="mbs2/pr17/init.sql"/>
+      </zipfileset>
+      <zipgroupfileset dir="lib/runtime/jdbc" includes="mysql-connector-java-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="openjpa-asm-shaded-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="commons-lang*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="commons-collections-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="commons-pool-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="serp-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="xbean-*.jar"/>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr17.TestRunner"/>
+      </manifest>
+      <metainf dir="src/mbs2/pr17" includes="persistence.xml"/>
+    </jar>
+  </target>
+
+  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12,pr13,pr14,pr15,pr16,pr17"/>
   
   <target name="deploy" depends="build.all">
     <copy todir="${tomee.dir}/webapps">
