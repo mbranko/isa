@@ -350,7 +350,27 @@
     </war>
   </target>
 
-  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12,pr13"/>
+  <target name="pr14" depends="compile">
+    <mkdir dir="dist/pr14"/>
+    <copy todir="bin">
+      <fileset dir="src/mbs2/pr14" includes="*.sql"/>
+    </copy>
+    <jar destfile="dist/pr14/pr14.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr14/User.class"/>
+        <include name="mbs2/pr14/Test.class"/>
+        <include name="mbs2/pr14/TestRunner.class"/>
+        <include name="mbs2/util/ScriptRunner.class"/>
+        <include name="mbs2/pr14/init.sql"/>
+      </zipfileset>
+      <zipgroupfileset dir="lib/runtime/jdbc" includes="mysql-connector-java-*.jar"/>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr14.TestRunner"/>
+      </manifest>
+    </jar>
+  </target>
+  
+  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12,pr13,pr14"/>
   
   <target name="deploy" depends="build.all">
     <copy todir="${tomee.dir}/webapps">
