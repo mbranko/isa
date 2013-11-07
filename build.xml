@@ -303,7 +303,37 @@
     </jar>
   </target>
 
-  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11"/>
+  <target name="pr12" depends="compile">
+    <mkdir dir="dist/pr12"/>
+    <copy todir="bin">
+      <fileset dir="src/mbs2/pr12" includes="*.sql"/>
+    </copy>
+    <war destfile="dist/pr12/pr12.war" webxml="src/mbs2/pr12/web.xml">
+      <classes dir="bin">
+        <include name="mbs2/pr12/Db4.class"/>
+      </classes>
+      <lib dir="lib/runtime/jdbc">
+        <include name="mysql-*.jar"/>
+      </lib>
+    </war>
+    <jar destfile="dist/pr12/DbExample.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr12/Db1.class"/>
+        <include name="mbs2/pr12/Db2.class"/>
+        <include name="mbs2/pr12/Db3.class"/>
+        <include name="mbs2/pr12/TestRunner.class"/>
+        <include name="mbs2/util/ScriptRunner.class"/>
+        <include name="mbs2/pr12/init.sql"/>
+        <include name="mbs2/pr12/init2.sql"/>
+      </zipfileset>
+      <zipgroupfileset dir="lib/runtime/jdbc" includes="mysql-connector-java-*.jar"/>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr12.TestRunner"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12"/>
   
   <target name="deploy" depends="build.all">
     <copy todir="${tomee.dir}/webapps">
