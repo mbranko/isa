@@ -370,7 +370,29 @@
     </jar>
   </target>
   
-  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12,pr13,pr14"/>
+  <target name="pr15" depends="compile">
+    <mkdir dir="dist/pr15"/>
+    <copy todir="bin">
+      <fileset dir="src/mbs2/pr15" includes="*.sql"/>
+    </copy>
+    <jar destfile="dist/pr15/pr15.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr15/User.class"/>
+        <include name="mbs2/pr15/Test.class"/>
+        <include name="mbs2/pr15/TestRunner.class"/>
+        <include name="mbs2/util/ScriptRunner.class"/>
+        <include name="mbs2/pr13/ConnectionPool.class"/>
+        <include name="mbs2/pr13/ConnectionPool.properties"/>
+        <include name="mbs2/pr15/init.sql"/>
+      </zipfileset>
+      <zipgroupfileset dir="lib/runtime/jdbc" includes="mysql-connector-java-*.jar"/>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr15.TestRunner"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12,pr13,pr14,pr15"/>
   
   <target name="deploy" depends="build.all">
     <copy todir="${tomee.dir}/webapps">
