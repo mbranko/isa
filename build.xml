@@ -495,7 +495,29 @@
     </war>
   </target>
   
-  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12,pr13,pr14,pr15,pr16,pr17,pr18,pr19"/>
+  <target name="pr20" depends="compile">
+    <mkdir dir="dist/pr20"/>
+    <war destfile="dist/pr20/pr20.war" webxml="src/mbs2/pr20/web.xml">
+      <classes dir="bin" includes="mbs2/pr20/**/*.class"/>
+    </war>
+    <jar destfile="dist/pr20/Client.jar">
+      <fileset dir="bin">
+        <include name="mbs2/pr20/*.class"/>
+        <include name="mbs2/pr20/bean/PurchaseClient.class"/>
+        <include name="mbs2/pr20/bean/Purchase.class"/>
+        <include name="mbs2/pr20/container/PurchaseClient2.class"/>
+        <include name="mbs2/pr20/container/Purchase.class"/>
+        <include name="mbs2/pr20/client/ClientTx.class"/>
+      </fileset>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="openejb-client-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr20.TestRunner"/>
+      </manifest>
+    </jar>
+  </target>
+  
+  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12,pr13,pr14,pr15,pr16,pr17,pr18,pr19,pr20"/>
   
   <target name="deploy" depends="build.all">
     <copy todir="${tomee.dir}/webapps">
