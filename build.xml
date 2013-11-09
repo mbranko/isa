@@ -517,7 +517,41 @@
     </jar>
   </target>
   
-  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12,pr13,pr14,pr15,pr16,pr17,pr18,pr19,pr20"/>
+  <target name="pr21" depends="compile">
+    <mkdir dir="dist/pr21"/>
+    <copy todir="bin/mbs2/pr21">
+      <fileset dir="src/mbs2/pr21" includes="*.sql"/>
+    </copy>
+    <mkdir dir="bin/META-INF"/>
+    <copy todir="bin/META-INF" file="src/mbs2/pr21/persistence.xml"/>
+    <openjpac>
+      <classpath refid="runtime.classpath"/>
+    </openjpac>
+    <delete dir="bin/META-INF"/>
+    <jar destfile="dist/pr21/pr21.jar">
+      <zipfileset dir="bin">
+        <include name="mbs2/pr21/*.class"/>
+        <include name="mbs2/pr21/optimistic/*.class"/>
+        <include name="mbs2/pr21/pessimistic/*.class"/>
+        <include name="mbs2/pr21/init.sql"/>
+        <include name="mbs2/util/ScriptRunner.class"/>
+      </zipfileset>
+      <zipgroupfileset dir="lib/runtime/jdbc" includes="mysql-connector-java-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="openjpa-asm-shaded-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="commons-lang*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="commons-collections-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="commons-pool-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="serp-*.jar"/>
+      <zipgroupfileset dir="${tomee.dir}/lib" includes="xbean-*.jar"/>
+      <manifest>
+        <attribute name="Main-Class" value="mbs2.pr21.TestRunner"/>
+      </manifest>
+      <metainf dir="src/mbs2/pr21" includes="persistence.xml"/>
+    </jar>
+  </target>
+
+  <target name="build.all" depends="pr01,pr02,pr03,pr04,pr05,pr06,pr07,pr08,pr09,pr10,pr11,pr12,pr13,pr14,pr15,pr16,pr17,pr18,pr19,pr20,pr21"/>
   
   <target name="deploy" depends="build.all">
     <copy todir="${tomee.dir}/webapps">

@@ -1,10 +1,10 @@
 FTN / Katedra za informatiku
-Mrezno bazirani sistemi 2 / 2008.
+Mrezno bazirani sistemi 2 / 2013.
 =================================
 
 1. Lokacija primera
 -------------------
-yu.ac.ns.ftn.informatika.mbs2.pr20
+mbs2.pr20
 
 2. Opis primera
 ---------------
@@ -22,3 +22,7 @@ bean.*             - SLSB-ovi sa bean-managed transakcijama
 client.*           - SLSB-ovi koje poziva klijent koji kontrolise transakcije
 container.*        - SLSB-ovi kojima kontejner rukuje transakcijama
 
+4. Pokretanje primera
+---------------------
+[]$ ant deploy
+[dist/pr20]$ java -jar Client.jar
