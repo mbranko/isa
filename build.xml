@@ -1,4 +1,4 @@
-<project name="mbs2.predavanja" default="build.all">
+<project name="isa.predavanja" default="build.all">
   <property file="tomee.properties"/>
   <property name="javac.debug" value="on"/>
   <property environment="env"/>
@@ -21,21 +21,21 @@
     <mkdir dir="dist/pr01"/>
     <jar destfile="dist/pr01/Server.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr01/ServerMain.class"/>
-        <include name="mbs2/pr01/Server.class"/>
-        <include name="mbs2/pr01/ServerI.class"/>
+        <include name="isa/pr01/ServerMain.class"/>
+        <include name="isa/pr01/Server.class"/>
+        <include name="isa/pr01/ServerI.class"/>
       </zipfileset>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr01.ServerMain"/>
+        <attribute name="Main-Class" value="isa.pr01.ServerMain"/>
       </manifest>
     </jar>
     <jar destfile="dist/pr01/Client.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr01/Client.class"/>
-        <include name="mbs2/pr01/ServerI.class"/>
+        <include name="isa/pr01/Client.class"/>
+        <include name="isa/pr01/ServerI.class"/>
       </zipfileset>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr01.Client"/>
+        <attribute name="Main-Class" value="isa.pr01.Client"/>
       </manifest>
     </jar>
   </target>
@@ -44,55 +44,55 @@
     <mkdir dir="dist/pr02"/>
     <jar destfile="dist/pr02/Server.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr02/Compute.class"/>
-        <include name="mbs2/pr02/ComputeServer.class"/>
-        <include name="mbs2/pr02/Task.class"/>
+        <include name="isa/pr02/Compute.class"/>
+        <include name="isa/pr02/ComputeServer.class"/>
+        <include name="isa/pr02/Task.class"/>
       </zipfileset>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr02.ComputeServer"/>
+        <attribute name="Main-Class" value="isa.pr02.ComputeServer"/>
       </manifest>
     </jar>
     <jar destfile="dist/pr02/Client.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr02/Compute.class"/>
-        <include name="mbs2/pr02/Task.class"/>
-        <include name="mbs2/pr02/Pi.class"/>
-        <include name="mbs2/pr02/ComputeClient.class"/>
+        <include name="isa/pr02/Compute.class"/>
+        <include name="isa/pr02/Task.class"/>
+        <include name="isa/pr02/Pi.class"/>
+        <include name="isa/pr02/ComputeClient.class"/>
       </zipfileset>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr02.ComputeClient"/>
+        <attribute name="Main-Class" value="isa.pr02.ComputeClient"/>
       </manifest>
     </jar>
-    <copy file="src/mbs2/pr02/server.policy" todir="dist/pr02"/>
-    <copy file="src/mbs2/pr02/client.policy" todir="dist/pr02"/>
+    <copy file="src/isa/pr02/server.policy" todir="dist/pr02"/>
+    <copy file="src/isa/pr02/client.policy" todir="dist/pr02"/>
   </target>
 
   <target name="pr03" depends="compile">
     <mkdir dir="dist/pr03"/>
     <jar destfile="dist/pr03/FileClient.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr03/FileClient.class"/>
+        <include name="isa/pr03/FileClient.class"/>
       </zipfileset>
       <zipfileset src="lib/runtime/jndi/fscontext.jar"/>
       <zipfileset src="lib/runtime/jndi/providerutil.jar"/>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr03.FileClient"/>
+        <attribute name="Main-Class" value="isa.pr03.FileClient"/>
       </manifest>
     </jar>
     <jar destfile="dist/pr03/DNSClient.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr03/DNSClient.class"/>
+        <include name="isa/pr03/DNSClient.class"/>
       </zipfileset>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr03.DNSClient"/>
+        <attribute name="Main-Class" value="isa.pr03.DNSClient"/>
       </manifest>
     </jar>
     <jar destfile="dist/pr03/LDAPClient.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr03/LDAPClient.class"/>
+        <include name="isa/pr03/LDAPClient.class"/>
       </zipfileset>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr03.LDAPClient"/>
+        <attribute name="Main-Class" value="isa.pr03.LDAPClient"/>
       </manifest>
     </jar>
   </target>
@@ -101,209 +101,209 @@
     <mkdir dir="dist/pr04"/>
     <jar destfile="dist/pr04/Client.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr04/Client.class"/>
-        <include name="mbs2/pr04/ServerI.class"/>
+        <include name="isa/pr04/Client.class"/>
+        <include name="isa/pr04/ServerI.class"/>
       </zipfileset>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr04.Client"/>
+        <attribute name="Main-Class" value="isa.pr04.Client"/>
       </manifest>
     </jar>
     <jar destfile="dist/pr04/Server.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr04/Server.class"/>
-        <include name="mbs2/pr04/ServerI.class"/>
+        <include name="isa/pr04/Server.class"/>
+        <include name="isa/pr04/ServerI.class"/>
       </zipfileset>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr04.Server"/>
+        <attribute name="Main-Class" value="isa.pr04.Server"/>
       </manifest>
     </jar>
   </target>
   
   <target name="pr05" depends="compile">
     <mkdir dir="dist/pr05"/>
-    <war destfile="dist/pr05/pr05.war" webxml="src/mbs2/pr05/web.xml">
+    <war destfile="dist/pr05/pr05.war" webxml="src/isa/pr05/web.xml">
       <classes dir="bin">
-        <include name="mbs2/pr05/Hello.class"/>
-        <include name="mbs2/pr05/HelloLocal.class"/>
-        <include name="mbs2/pr05/HelloBean.class"/>
+        <include name="isa/pr05/Hello.class"/>
+        <include name="isa/pr05/HelloLocal.class"/>
+        <include name="isa/pr05/HelloBean.class"/>
       </classes>
     </war>
     <jar destfile="dist/pr05/Client.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr05/HelloClient.class"/>
-        <include name="mbs2/pr05/Hello.class"/>
+        <include name="isa/pr05/HelloClient.class"/>
+        <include name="isa/pr05/Hello.class"/>
       </zipfileset>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="openejb-client-*.jar"/>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr05.HelloClient"/>
+        <attribute name="Main-Class" value="isa.pr05.HelloClient"/>
       </manifest>
     </jar>
   </target>
 
   <target name="pr06" depends="compile">
     <mkdir dir="dist/pr06"/>
-    <war destfile="dist/pr06/pr06.war" webxml="src/mbs2/pr06/web.xml">
+    <war destfile="dist/pr06/pr06.war" webxml="src/isa/pr06/web.xml">
       <classes dir="bin">
-        <include name="mbs2/pr06/Count.class"/>
-        <include name="mbs2/pr06/CountLocal.class"/>
-        <include name="mbs2/pr06/CountBean.class"/>
+        <include name="isa/pr06/Count.class"/>
+        <include name="isa/pr06/CountLocal.class"/>
+        <include name="isa/pr06/CountBean.class"/>
       </classes>
     </war>
     <jar destfile="dist/pr06/Client.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr06/CountClient.class"/>
-        <include name="mbs2/pr06/Count.class"/>
+        <include name="isa/pr06/CountClient.class"/>
+        <include name="isa/pr06/Count.class"/>
       </zipfileset>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="openejb-client-*.jar"/>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr06.CountClient"/>
+        <attribute name="Main-Class" value="isa.pr06.CountClient"/>
       </manifest>
     </jar>
   </target>
 
   <target name="pr07" depends="compile">
     <mkdir dir="dist/pr07"/>
-    <war destfile="dist/pr07/pr07.war" webxml="src/mbs2/pr07/web.xml">
+    <war destfile="dist/pr07/pr07.war" webxml="src/isa/pr07/web.xml">
       <classes dir="bin">
-        <include name="mbs2/pr07/Count.class"/>
-        <include name="mbs2/pr07/CountLocal.class"/>
-        <include name="mbs2/pr07/CountBean.class"/>
+        <include name="isa/pr07/Count.class"/>
+        <include name="isa/pr07/CountLocal.class"/>
+        <include name="isa/pr07/CountBean.class"/>
       </classes>
     </war>
     <jar destfile="dist/pr07/Client.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr07/CountClient.class"/>
-        <include name="mbs2/pr07/Count.class"/>
+        <include name="isa/pr07/CountClient.class"/>
+        <include name="isa/pr07/Count.class"/>
       </zipfileset>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="openejb-client-*.jar"/>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr07.CountClient"/>
+        <attribute name="Main-Class" value="isa.pr07.CountClient"/>
       </manifest>
     </jar>
   </target>
 
   <target name="pr08" depends="compile">
     <mkdir dir="dist/pr08"/>
-    <war destfile="dist/pr08/pr08.war" webxml="src/mbs2/pr08/web.xml">
+    <war destfile="dist/pr08/pr08.war" webxml="src/isa/pr08/web.xml">
       <classes dir="bin">
-        <include name="mbs2/pr08/CreditCard.class"/>
-        <include name="mbs2/pr08/Order.class"/>
-        <include name="mbs2/pr08/Payment.class"/>
-        <include name="mbs2/pr08/PaymentBean.class"/>
-        <include name="mbs2/pr08/PaymentLocal.class"/>
-        <include name="mbs2/pr08/Purchase.class"/>
-        <include name="mbs2/pr08/PurchaseBean.class"/>
-        <include name="mbs2/pr08/PurchaseLocal.class"/>
+        <include name="isa/pr08/CreditCard.class"/>
+        <include name="isa/pr08/Order.class"/>
+        <include name="isa/pr08/Payment.class"/>
+        <include name="isa/pr08/PaymentBean.class"/>
+        <include name="isa/pr08/PaymentLocal.class"/>
+        <include name="isa/pr08/Purchase.class"/>
+        <include name="isa/pr08/PurchaseBean.class"/>
+        <include name="isa/pr08/PurchaseLocal.class"/>
       </classes>
     </war>
     <jar destfile="dist/pr08/Client.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr08/PurchaseClient.class"/>
-        <include name="mbs2/pr08/Purchase.class"/>
-        <include name="mbs2/pr08/CreditCard.class"/>
-        <include name="mbs2/pr08/Order.class"/>
+        <include name="isa/pr08/PurchaseClient.class"/>
+        <include name="isa/pr08/Purchase.class"/>
+        <include name="isa/pr08/CreditCard.class"/>
+        <include name="isa/pr08/Order.class"/>
       </zipfileset>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="openejb-client-*.jar"/>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr08.PurchaseClient"/>
+        <attribute name="Main-Class" value="isa.pr08.PurchaseClient"/>
       </manifest>
     </jar>
   </target>
 
   <target name="pr09" depends="compile">
     <mkdir dir="dist/pr09"/>
-    <war destfile="dist/pr09/pr09.war" webxml="src/mbs2/pr09/web.xml">
+    <war destfile="dist/pr09/pr09.war" webxml="src/isa/pr09/web.xml">
       <classes dir="bin">
-        <include name="mbs2/pr09/CreditCard.class"/>
-        <include name="mbs2/pr09/Order.class"/>
-        <include name="mbs2/pr09/Payment.class"/>
-        <include name="mbs2/pr09/PaymentBean.class"/>
-        <include name="mbs2/pr09/PaymentLocal.class"/>
-        <include name="mbs2/pr09/Purchase.class"/>
-        <include name="mbs2/pr09/PurchaseBean.class"/>
-        <include name="mbs2/pr09/PurchaseLocal.class"/>
+        <include name="isa/pr09/CreditCard.class"/>
+        <include name="isa/pr09/Order.class"/>
+        <include name="isa/pr09/Payment.class"/>
+        <include name="isa/pr09/PaymentBean.class"/>
+        <include name="isa/pr09/PaymentLocal.class"/>
+        <include name="isa/pr09/Purchase.class"/>
+        <include name="isa/pr09/PurchaseBean.class"/>
+        <include name="isa/pr09/PurchaseLocal.class"/>
       </classes>
     </war>
     <jar destfile="dist/pr09/Client.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr09/PurchaseClient.class"/>
-        <include name="mbs2/pr09/Purchase.class"/>
-        <include name="mbs2/pr09/CreditCard.class"/>
-        <include name="mbs2/pr09/Order.class"/>
+        <include name="isa/pr09/PurchaseClient.class"/>
+        <include name="isa/pr09/Purchase.class"/>
+        <include name="isa/pr09/CreditCard.class"/>
+        <include name="isa/pr09/Order.class"/>
       </zipfileset>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="openejb-client-*.jar"/>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr09.PurchaseClient"/>
+        <attribute name="Main-Class" value="isa.pr09.PurchaseClient"/>
       </manifest>
     </jar>
   </target>
 
   <target name="pr10" depends="compile">
     <mkdir dir="dist/pr10"/>
-    <war destfile="dist/pr10/pr10.war" webxml="src/mbs2/pr10/web.xml">
+    <war destfile="dist/pr10/pr10.war" webxml="src/isa/pr10/web.xml">
       <classes dir="bin">
-        <include name="mbs2/pr10/CreditCard.class"/>
-        <include name="mbs2/pr10/Order.class"/>
-        <include name="mbs2/pr10/Logger.class"/>
-        <include name="mbs2/pr10/Payment.class"/>
-        <include name="mbs2/pr10/PaymentBean.class"/>
-        <include name="mbs2/pr10/PaymentLocal.class"/>
-        <include name="mbs2/pr10/Purchase.class"/>
-        <include name="mbs2/pr10/PurchaseBean.class"/>
-        <include name="mbs2/pr10/PurchaseLocal.class"/>
+        <include name="isa/pr10/CreditCard.class"/>
+        <include name="isa/pr10/Order.class"/>
+        <include name="isa/pr10/Logger.class"/>
+        <include name="isa/pr10/Payment.class"/>
+        <include name="isa/pr10/PaymentBean.class"/>
+        <include name="isa/pr10/PaymentLocal.class"/>
+        <include name="isa/pr10/Purchase.class"/>
+        <include name="isa/pr10/PurchaseBean.class"/>
+        <include name="isa/pr10/PurchaseLocal.class"/>
       </classes>
     </war>
     <jar destfile="dist/pr10/Client.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr10/PurchaseClient.class"/>
-        <include name="mbs2/pr10/Purchase.class"/>
-        <include name="mbs2/pr10/CreditCard.class"/>
-        <include name="mbs2/pr10/Order.class"/>
+        <include name="isa/pr10/PurchaseClient.class"/>
+        <include name="isa/pr10/Purchase.class"/>
+        <include name="isa/pr10/CreditCard.class"/>
+        <include name="isa/pr10/Order.class"/>
       </zipfileset>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="openejb-client-*.jar"/>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr10.PurchaseClient"/>
+        <attribute name="Main-Class" value="isa.pr10.PurchaseClient"/>
       </manifest>
     </jar>
   </target>
 
   <target name="pr11" depends="compile">
     <mkdir dir="dist/pr11"/>
-    <war destfile="dist/pr11/pr11.war" webxml="src/mbs2/pr11/web.xml">
+    <war destfile="dist/pr11/pr11.war" webxml="src/isa/pr11/web.xml">
       <classes dir="bin">
-        <include name="mbs2/pr11/Count.class"/>
-        <include name="mbs2/pr11/CountLocal.class"/>
-        <include name="mbs2/pr11/CountBean.class"/>
-        <include name="mbs2/pr11/CountCallbacks.class"/>
+        <include name="isa/pr11/Count.class"/>
+        <include name="isa/pr11/CountLocal.class"/>
+        <include name="isa/pr11/CountBean.class"/>
+        <include name="isa/pr11/CountCallbacks.class"/>
       </classes>
     </war>
     <jar destfile="dist/pr11/Client.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr11/CountClient.class"/>
-        <include name="mbs2/pr11/Count.class"/>
+        <include name="isa/pr11/CountClient.class"/>
+        <include name="isa/pr11/Count.class"/>
       </zipfileset>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="openejb-client-*.jar"/>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr11.CountClient"/>
+        <attribute name="Main-Class" value="isa.pr11.CountClient"/>
       </manifest>
     </jar>
   </target>
 
   <target name="pr12" depends="compile">
     <mkdir dir="dist/pr12"/>
-    <copy todir="bin/mbs2/pr12">
-      <fileset dir="src/mbs2/pr12" includes="*.sql"/>
+    <copy todir="bin/isa/pr12">
+      <fileset dir="src/isa/pr12" includes="*.sql"/>
     </copy>
-    <war destfile="dist/pr12/pr12.war" webxml="src/mbs2/pr12/web.xml">
+    <war destfile="dist/pr12/pr12.war" webxml="src/isa/pr12/web.xml">
       <classes dir="bin">
-        <include name="mbs2/pr12/Db4.class"/>
+        <include name="isa/pr12/Db4.class"/>
       </classes>
       <lib dir="lib/runtime/jdbc">
         <include name="mysql-*.jar"/>
@@ -311,31 +311,31 @@
     </war>
     <jar destfile="dist/pr12/DbExample.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr12/Db1.class"/>
-        <include name="mbs2/pr12/Db2.class"/>
-        <include name="mbs2/pr12/Db3.class"/>
-        <include name="mbs2/pr12/TestRunner.class"/>
-        <include name="mbs2/util/ScriptRunner.class"/>
-        <include name="mbs2/pr12/init.sql"/>
-        <include name="mbs2/pr12/init2.sql"/>
+        <include name="isa/pr12/Db1.class"/>
+        <include name="isa/pr12/Db2.class"/>
+        <include name="isa/pr12/Db3.class"/>
+        <include name="isa/pr12/TestRunner.class"/>
+        <include name="isa/util/ScriptRunner.class"/>
+        <include name="isa/pr12/init.sql"/>
+        <include name="isa/pr12/init2.sql"/>
       </zipfileset>
       <zipgroupfileset dir="lib/runtime/jdbc" includes="mysql-connector-java-*.jar"/>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr12.TestRunner"/>
+        <attribute name="Main-Class" value="isa.pr12.TestRunner"/>
       </manifest>
     </jar>
   </target>
 
   <target name="pr13" depends="compile">
     <mkdir dir="dist/pr13"/>
-    <copy todir="bin/mbs2/pr13">
-      <fileset dir="src" includes="mbs2/pr13/*.properties"/>
+    <copy todir="bin/isa/pr13">
+      <fileset dir="src" includes="isa/pr13/*.properties"/>
     </copy>
-    <war destfile="dist/pr13/pr13.war" webxml="src/mbs2/pr13/web.xml">
+    <war destfile="dist/pr13/pr13.war" webxml="src/isa/pr13/web.xml">
       <classes dir="bin">
-        <include name="mbs2/pr13/DbServlet.class"/>
-        <include name="mbs2/pr13/ConnectionPool.class"/>
-        <include name="mbs2/pr13/ConnectionPool.properties"/>
+        <include name="isa/pr13/DbServlet.class"/>
+        <include name="isa/pr13/ConnectionPool.class"/>
+        <include name="isa/pr13/ConnectionPool.properties"/>
       </classes>
       <lib dir="lib/runtime/jdbc">
         <include name="mysql-*.jar"/>
@@ -345,64 +345,64 @@
 
   <target name="pr14" depends="compile">
     <mkdir dir="dist/pr14"/>
-    <copy todir="bin/mbs2/pr14">
-      <fileset dir="src/mbs2/pr14" includes="*.sql"/>
+    <copy todir="bin/isa/pr14">
+      <fileset dir="src/isa/pr14" includes="*.sql"/>
     </copy>
     <jar destfile="dist/pr14/pr14.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr14/User.class"/>
-        <include name="mbs2/pr14/Test.class"/>
-        <include name="mbs2/pr14/TestRunner.class"/>
-        <include name="mbs2/util/ScriptRunner.class"/>
-        <include name="mbs2/pr14/init.sql"/>
+        <include name="isa/pr14/User.class"/>
+        <include name="isa/pr14/Test.class"/>
+        <include name="isa/pr14/TestRunner.class"/>
+        <include name="isa/util/ScriptRunner.class"/>
+        <include name="isa/pr14/init.sql"/>
       </zipfileset>
       <zipgroupfileset dir="lib/runtime/jdbc" includes="mysql-connector-java-*.jar"/>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr14.TestRunner"/>
+        <attribute name="Main-Class" value="isa.pr14.TestRunner"/>
       </manifest>
     </jar>
   </target>
   
   <target name="pr15" depends="compile">
     <mkdir dir="dist/pr15"/>
-    <copy todir="bin/mbs2/pr15">
-      <fileset dir="src/mbs2/pr15" includes="*.sql"/>
+    <copy todir="bin/isa/pr15">
+      <fileset dir="src/isa/pr15" includes="*.sql"/>
     </copy>
     <jar destfile="dist/pr15/pr15.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr15/User.class"/>
-        <include name="mbs2/pr15/Test.class"/>
-        <include name="mbs2/pr15/TestRunner.class"/>
-        <include name="mbs2/util/ScriptRunner.class"/>
-        <include name="mbs2/pr13/ConnectionPool.class"/>
-        <include name="mbs2/pr13/ConnectionPool.properties"/>
-        <include name="mbs2/pr15/init.sql"/>
+        <include name="isa/pr15/User.class"/>
+        <include name="isa/pr15/Test.class"/>
+        <include name="isa/pr15/TestRunner.class"/>
+        <include name="isa/util/ScriptRunner.class"/>
+        <include name="isa/pr13/ConnectionPool.class"/>
+        <include name="isa/pr13/ConnectionPool.properties"/>
+        <include name="isa/pr15/init.sql"/>
       </zipfileset>
       <zipgroupfileset dir="lib/runtime/jdbc" includes="mysql-connector-java-*.jar"/>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr15.TestRunner"/>
+        <attribute name="Main-Class" value="isa.pr15.TestRunner"/>
       </manifest>
     </jar>
   </target>
 
   <target name="pr16" depends="compile">
     <mkdir dir="dist/pr16"/>
-    <copy todir="bin/mbs2/pr16">
-      <fileset dir="src/mbs2/pr16" includes="*.sql"/>
+    <copy todir="bin/isa/pr16">
+      <fileset dir="src/isa/pr16" includes="*.sql"/>
     </copy>
     <mkdir dir="bin/META-INF"/>
-    <copy todir="bin/META-INF" file="src/mbs2/pr16/persistence.xml"/>
+    <copy todir="bin/META-INF" file="src/isa/pr16/persistence.xml"/>
     <openjpac>
       <classpath refid="runtime.classpath"/>
     </openjpac>
     <delete dir="bin/META-INF"/>
     <jar destfile="dist/pr16/pr16.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr16/Admin.class"/>
-        <include name="mbs2/pr16/Test.class"/>
-        <include name="mbs2/pr16/TestRunner.class"/>
-        <include name="mbs2/util/ScriptRunner.class"/>
-        <include name="mbs2/pr16/init.sql"/>
+        <include name="isa/pr16/Admin.class"/>
+        <include name="isa/pr16/Test.class"/>
+        <include name="isa/pr16/TestRunner.class"/>
+        <include name="isa/util/ScriptRunner.class"/>
+        <include name="isa/pr16/init.sql"/>
       </zipfileset>
       <zipgroupfileset dir="lib/runtime/jdbc" includes="mysql-connector-java-*.jar"/>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
@@ -413,38 +413,38 @@
       <zipgroupfileset dir="${tomee.dir}/lib" includes="serp-*.jar"/>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="xbean-*.jar"/>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr16.TestRunner"/>
+        <attribute name="Main-Class" value="isa.pr16.TestRunner"/>
       </manifest>
-      <metainf dir="src/mbs2/pr16" includes="persistence.xml"/>
+      <metainf dir="src/isa/pr16" includes="persistence.xml"/>
     </jar>
   </target>
 
   <target name="pr17" depends="compile">
     <mkdir dir="dist/pr17"/>
-    <copy todir="bin/mbs2/pr17">
-      <fileset dir="src/mbs2/pr17" includes="*.sql"/>
+    <copy todir="bin/isa/pr17">
+      <fileset dir="src/isa/pr17" includes="*.sql"/>
     </copy>
     <mkdir dir="bin/META-INF"/>
-    <copy todir="bin/META-INF" file="src/mbs2/pr17/persistence.xml"/>
+    <copy todir="bin/META-INF" file="src/isa/pr17/persistence.xml"/>
     <openjpac>
       <classpath refid="runtime.classpath"/>
     </openjpac>
     <delete dir="bin/META-INF"/>
     <jar destfile="dist/pr17/pr17.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr17/Admin.class"/>
-        <include name="mbs2/pr17/Category.class"/>
-        <include name="mbs2/pr17/CreditCard.class"/>
-        <include name="mbs2/pr17/OrderItem.class"/>
-        <include name="mbs2/pr17/Product.class"/>
-        <include name="mbs2/pr17/ProductImage.class"/>
-        <include name="mbs2/pr17/PurchaseOrder.class"/>
-        <include name="mbs2/pr17/Supplier.class"/>
-        <include name="mbs2/pr17/Test.class"/>
-        <include name="mbs2/pr17/TestRunner.class"/>
-        <include name="mbs2/util/ScriptRunner.class"/>
-        <include name="mbs2/pr17/User.class"/>
-        <include name="mbs2/pr17/init.sql"/>
+        <include name="isa/pr17/Admin.class"/>
+        <include name="isa/pr17/Category.class"/>
+        <include name="isa/pr17/CreditCard.class"/>
+        <include name="isa/pr17/OrderItem.class"/>
+        <include name="isa/pr17/Product.class"/>
+        <include name="isa/pr17/ProductImage.class"/>
+        <include name="isa/pr17/PurchaseOrder.class"/>
+        <include name="isa/pr17/Supplier.class"/>
+        <include name="isa/pr17/Test.class"/>
+        <include name="isa/pr17/TestRunner.class"/>
+        <include name="isa/util/ScriptRunner.class"/>
+        <include name="isa/pr17/User.class"/>
+        <include name="isa/pr17/init.sql"/>
       </zipfileset>
       <zipgroupfileset dir="lib/runtime/jdbc" includes="mysql-connector-java-*.jar"/>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
@@ -455,41 +455,41 @@
       <zipgroupfileset dir="${tomee.dir}/lib" includes="serp-*.jar"/>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="xbean-*.jar"/>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr17.TestRunner"/>
+        <attribute name="Main-Class" value="isa.pr17.TestRunner"/>
       </manifest>
-      <metainf dir="src/mbs2/pr17" includes="persistence.xml"/>
+      <metainf dir="src/isa/pr17" includes="persistence.xml"/>
     </jar>
   </target>
 
   <target name="pr18" depends="compile">
     <mkdir dir="dist/pr18"/>
-    <war destfile="dist/pr18/pr18.war" webxml="src/mbs2/pr18/web.xml">
+    <war destfile="dist/pr18/pr18.war" webxml="src/isa/pr18/web.xml">
       <classes dir="bin">
-        <include name="mbs2/pr18/CreditCard.class"/>
-        <include name="mbs2/pr18/Logger.class"/>
-        <include name="mbs2/pr18/Order.class"/>
-        <include name="mbs2/pr18/Payment.class"/>
-        <include name="mbs2/pr18/PaymentBean.class"/>
-        <include name="mbs2/pr18/PaymentLocal.class"/>
-        <include name="mbs2/pr18/Purchase.class"/>
-        <include name="mbs2/pr18/PurchaseBean.class"/>
-        <include name="mbs2/pr18/PurchaseLocal.class"/>
-        <include name="mbs2/pr18/PurchaseServlet.class"/>
+        <include name="isa/pr18/CreditCard.class"/>
+        <include name="isa/pr18/Logger.class"/>
+        <include name="isa/pr18/Order.class"/>
+        <include name="isa/pr18/Payment.class"/>
+        <include name="isa/pr18/PaymentBean.class"/>
+        <include name="isa/pr18/PaymentLocal.class"/>
+        <include name="isa/pr18/Purchase.class"/>
+        <include name="isa/pr18/PurchaseBean.class"/>
+        <include name="isa/pr18/PurchaseLocal.class"/>
+        <include name="isa/pr18/PurchaseServlet.class"/>
       </classes>
-      <fileset dir="src/mbs2/pr18" includes="*.html"/>
+      <fileset dir="src/isa/pr18" includes="*.html"/>
     </war>
   </target>
 
   <target name="pr19" depends="compile">
     <mkdir dir="dist/pr19"/>
-    <war destfile="dist/pr19/pr19.war" webxml="src/mbs2/pr19/web.xml">
-      <fileset dir="src/mbs2/pr19" includes="*.jsp"/>
-      <classes dir="bin" includes="mbs2/pr19/**/*.class"/>
+    <war destfile="dist/pr19/pr19.war" webxml="src/isa/pr19/web.xml">
+      <fileset dir="src/isa/pr19" includes="*.jsp"/>
+      <classes dir="bin" includes="isa/pr19/**/*.class"/>
       <lib dir="lib/runtime/jdbc" includes="mysql-*.jar"/>
-      <metainf dir="src/mbs2/pr19">
+      <metainf dir="src/isa/pr19">
         <include name="persistence.xml"/>
       </metainf>
-      <webinf dir="src/mbs2/pr19">
+      <webinf dir="src/isa/pr19">
         <include name="resources.xml"/>
       </webinf>
     </war>
@@ -497,44 +497,44 @@
   
   <target name="pr20" depends="compile">
     <mkdir dir="dist/pr20"/>
-    <war destfile="dist/pr20/pr20.war" webxml="src/mbs2/pr20/web.xml">
-      <classes dir="bin" includes="mbs2/pr20/**/*.class"/>
+    <war destfile="dist/pr20/pr20.war" webxml="src/isa/pr20/web.xml">
+      <classes dir="bin" includes="isa/pr20/**/*.class"/>
     </war>
     <jar destfile="dist/pr20/Client.jar">
       <fileset dir="bin">
-        <include name="mbs2/pr20/*.class"/>
-        <include name="mbs2/pr20/bean/PurchaseClient.class"/>
-        <include name="mbs2/pr20/bean/Purchase.class"/>
-        <include name="mbs2/pr20/container/PurchaseClient2.class"/>
-        <include name="mbs2/pr20/container/Purchase.class"/>
-        <include name="mbs2/pr20/client/ClientTx.class"/>
+        <include name="isa/pr20/*.class"/>
+        <include name="isa/pr20/bean/PurchaseClient.class"/>
+        <include name="isa/pr20/bean/Purchase.class"/>
+        <include name="isa/pr20/container/PurchaseClient2.class"/>
+        <include name="isa/pr20/container/Purchase.class"/>
+        <include name="isa/pr20/client/ClientTx.class"/>
       </fileset>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="openejb-client-*.jar"/>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr20.TestRunner"/>
+        <attribute name="Main-Class" value="isa.pr20.TestRunner"/>
       </manifest>
     </jar>
   </target>
   
   <target name="pr21" depends="compile">
     <mkdir dir="dist/pr21"/>
-    <copy todir="bin/mbs2/pr21">
-      <fileset dir="src/mbs2/pr21" includes="*.sql"/>
+    <copy todir="bin/isa/pr21">
+      <fileset dir="src/isa/pr21" includes="*.sql"/>
     </copy>
     <mkdir dir="bin/META-INF"/>
-    <copy todir="bin/META-INF" file="src/mbs2/pr21/persistence.xml"/>
+    <copy todir="bin/META-INF" file="src/isa/pr21/persistence.xml"/>
     <openjpac>
       <classpath refid="runtime.classpath"/>
     </openjpac>
     <delete dir="bin/META-INF"/>
     <jar destfile="dist/pr21/pr21.jar">
       <zipfileset dir="bin">
-        <include name="mbs2/pr21/*.class"/>
-        <include name="mbs2/pr21/optimistic/*.class"/>
-        <include name="mbs2/pr21/pessimistic/*.class"/>
-        <include name="mbs2/pr21/init.sql"/>
-        <include name="mbs2/util/ScriptRunner.class"/>
+        <include name="isa/pr21/*.class"/>
+        <include name="isa/pr21/optimistic/*.class"/>
+        <include name="isa/pr21/pessimistic/*.class"/>
+        <include name="isa/pr21/init.sql"/>
+        <include name="isa/util/ScriptRunner.class"/>
       </zipfileset>
       <zipgroupfileset dir="lib/runtime/jdbc" includes="mysql-connector-java-*.jar"/>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="javaee-api-*.jar"/>
@@ -545,9 +545,9 @@
       <zipgroupfileset dir="${tomee.dir}/lib" includes="serp-*.jar"/>
       <zipgroupfileset dir="${tomee.dir}/lib" includes="xbean-*.jar"/>
       <manifest>
-        <attribute name="Main-Class" value="mbs2.pr21.TestRunner"/>
+        <attribute name="Main-Class" value="isa.pr21.TestRunner"/>
       </manifest>
-      <metainf dir="src/mbs2/pr21" includes="persistence.xml"/>
+      <metainf dir="src/isa/pr21" includes="persistence.xml"/>
     </jar>
   </target>
 

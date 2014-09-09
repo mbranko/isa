@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+  <persistence-unit name="AdminDemo" transaction-type="RESOURCE_LOCAL">
+    <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+    <class>isa.pr16.Admin</class>
+    <properties>
+      <property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver"/>
+      <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost/isa"/>
+      <property name="openjpa.ConnectionUserName" value="isa"/>
+      <property name="openjpa.ConnectionPassword" value="isa"/>
+      <property name="openjpa.Log" value="DefaultLevel=WARN, Tool=WARN"/>
+    </properties>
+  </persistence-unit>
+</persistence>
