@@ -42,5 +42,5 @@ U sastav klijentskog programa ulaze:
 4. Pokretanje primera
 ---------------------
 [dist/pr02]$ rmiregistry -J-Djava.rmi.server.codebase=file://full-path-to-Server.jar
-[dist/pr02]$ java -Djava.security.policy=server.policy -jar Server.jar
+[dist/pr02]$ java -Djava.security.policy=server.policy -Djava.rmi.server.hostname=localhost -jar Server.jar
 [dist/pr02]$ java -Djava.security.policy=client.policy -jar Client.jar
