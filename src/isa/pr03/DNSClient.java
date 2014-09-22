@@ -17,6 +17,7 @@ public class DNSClient {
       // adresa DNS servera
       env.put("java.naming.provider.url",
         "dns://147.91.173.3/");
+        //"dns://192.168.1.1/");
 
       // kreiramo inicijalni kontekst
       DirContext ctx = new InitialDirContext(env);
