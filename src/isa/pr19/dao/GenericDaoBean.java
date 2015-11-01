@@ -34,7 +34,7 @@ public abstract class GenericDaoBean<T, ID extends Serializable> implements Gene
   
   @SuppressWarnings("unchecked")
   public List<T> findAll() {
-    Query q = em.createQuery("SELECT x FROM " + entityType.getSimpleName()+ "x");
+    Query q = em.createQuery("SELECT x FROM " + entityType.getSimpleName()+ " x");
     List<T> result = q.getResultList();
     return result;
   }

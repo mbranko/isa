@@ -485,8 +485,6 @@
     <war destfile="dist/pr19/pr19.war" webxml="src/isa/pr19/web.xml">
       <fileset dir="src/isa/pr19" includes="*.jsp"/>
       <classes dir="bin" includes="isa/pr19/**/*.class"/>
-      <lib dir="lib/runtime/jdbc" includes="mysql-*.jar"/>
-      <lib dir="lib/runtime/json" includes="*.jar"/>
       <metainf dir="src/isa/pr19">
         <include name="persistence.xml"/>
       </metainf>
@@ -559,11 +557,20 @@
     <copy todir="${tomee.dir}/webapps">
       <fileset dir="dist" includes="**/*.war"/>
     </copy>
+    <copy todir="${tomee.dir}/lib">
+      <fileset dir="lib/runtime/jdbc" includes="*.jar"/>
+    </copy>
   </target>
 	
 	<target name="deploy19" depends="pr19">
     <copy todir="${tomee.dir}/webapps">
       <fileset dir="dist/pr19" includes="*.war"/>
+    </copy>
+    <copy todir="${tomee.dir}/lib">
+      <fileset dir="lib/runtime/jdbc" includes="*.jar"/>
+    </copy>
+    <copy todir="${tomee.dir}/lib">
+      <fileset dir="lib/runtime/json" includes="*.jar"/>
     </copy>
 	</target>
 

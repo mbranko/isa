@@ -125,5 +125,5 @@ INSERT INTO products (category_id, supplier_id, prod_name, vendor, description, 
 INSERT INTO products (category_id, supplier_id, prod_name, vendor, description, price) VALUES (2, 1, 'Compaq nx9010', 'HP', 'trt', 1000);
 INSERT INTO products (category_id, supplier_id, prod_name, vendor, description, price) VALUES (2, 1, 'Tecra S5', 'Toshiba', 'trt', 1000);
 
-INSERT INTO users (username, pasword, first_name, last_name, user_address, email, receive_news) VALUES ('mbranko', 'mbranko', 'Branko', 'Milosavljevic', 'Fruskogorska 11', 'mbranko@uns.ns.ac.yu', FALSE);
-INSERT INTO users (username, pasword, first_name, last_name, user_address, email, receive_news) VALUES ('minja', 'minja', 'Milan', 'Vidakovic', 'Fruskogorska 11', 'minja@uns.ns.ac.yu', FALSE);
+INSERT INTO users (username, pasword, first_name, last_name, user_address, email, receive_news) VALUES ('mbranko', 'mbranko', 'Branko', 'Milosavljevic', 'Fruskogorska 11', 'mbranko@uns.ac.rs', FALSE);
+INSERT INTO users (username, pasword, first_name, last_name, user_address, email, receive_news) VALUES ('minja', 'minja', 'Milan', 'Vidakovic', 'Fruskogorska 11', 'minja@uns.ac.rs', FALSE);

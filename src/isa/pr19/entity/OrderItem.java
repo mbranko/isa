@@ -10,8 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
 @Table(name="order_items")
 public class OrderItem implements Serializable {
@@ -24,14 +32,17 @@ public class OrderItem implements Serializable {
   @Column(name="quantity", unique=false, nullable=false)
   private int quantity;
   
+  @JsonBackReference("order-item")
   @ManyToOne
   @JoinColumn(name="order_id", referencedColumnName="order_id", nullable=false)
   private PurchaseOrder order;
   
+  @JsonBackReference("product-item")
   @ManyToOne
   @JoinColumn(name="product_id", referencedColumnName="product_id", nullable=false)
   private Product product;
   
+  @JsonIgnore
   public BigDecimal getSum() {
     return product.getPrice().multiply(new BigDecimal(quantity));
   }

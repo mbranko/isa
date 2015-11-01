@@ -11,9 +11,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
 @Table(name="product_images")
 public class ProductImage implements Serializable {
@@ -40,6 +47,7 @@ public class ProductImage implements Serializable {
   @Column(name="image_data", unique=false, nullable=true)
   private byte[] imageData;
   
+  @JsonBackReference("product-image")
   @ManyToOne
   @JoinColumn(name="product_id", referencedColumnName="product_id", nullable=false)
   private Product product;

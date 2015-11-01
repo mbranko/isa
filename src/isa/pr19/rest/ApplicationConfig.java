@@ -10,6 +10,8 @@ import javax.ws.rs.core.Application;
 @ApplicationPath("/api")
 public class ApplicationConfig extends Application {
   public Set<Class<?>> getClasses() {
-    return new HashSet<Class<?>>(Arrays.asList(UserService.class));
+    return new HashSet<Class<?>>(Arrays.asList(
+        UsersResource.class,
+        OrdersResource.class));
   }
 }

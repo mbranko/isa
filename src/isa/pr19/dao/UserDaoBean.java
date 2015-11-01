@@ -26,8 +26,12 @@ public class UserDaoBean extends GenericDaoBean<User, Integer> implements UserDa
       return list.get(0);
   }
   
-  public void add(User user, PurchaseOrder order) {
+  public PurchaseOrder add(User user, PurchaseOrder order) {
+    System.out.println("**************");
+    System.out.println("user: " + user);
+    System.out.println("order: " + order);
     user = em.merge(user);
     user.add(order);
+    return order;
   }
 }

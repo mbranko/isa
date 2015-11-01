@@ -15,11 +15,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import static javax.persistence.TemporalType.TIMESTAMP; 
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
 @Table(name="orders")
 public class PurchaseOrder implements Serializable {
@@ -33,13 +42,16 @@ public class PurchaseOrder implements Serializable {
   @Column(name="order_date", unique=false, nullable=false)
   private Date date; 
   
+  @JsonBackReference("user-order")
   @ManyToOne
   @JoinColumn(name="user_id", referencedColumnName="user_id", nullable=false)
   private User user;
   
+  @JsonManagedReference("order-item")
   @OneToMany(cascade={ALL}, fetch=EAGER, mappedBy="order")
   private Set<OrderItem> items = new HashSet<OrderItem>();
   
+  @JsonIgnore
   public BigDecimal getTotal() {
     BigDecimal total = new BigDecimal(0);
     for (OrderItem i: items)

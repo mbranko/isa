@@ -13,10 +13,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
 @Table(name="products")
 public class Product implements Serializable {
@@ -38,17 +46,21 @@ public class Product implements Serializable {
   @Column(name="price", unique=false, nullable=false)
   private BigDecimal price;
   
+  @JsonBackReference("category-product")
   @ManyToOne
   @JoinColumn(name="category_id", referencedColumnName="category_id", nullable=false)
   private Category category;
   
+  @JsonBackReference("supplier-product")
   @ManyToOne
   @JoinColumn(name="supplier_id", referencedColumnName="supplier_id", nullable=false)
   private Supplier supplier;
   
+  @JsonManagedReference("product-item")
   @OneToMany(cascade={ALL}, fetch=LAZY, mappedBy="product")
   private Set<OrderItem> orderItems = new HashSet<OrderItem>();
   
+  @JsonManagedReference("product-image")
   @OneToMany(cascade={ALL}, fetch=LAZY, mappedBy="product")
   private Set<ProductImage> images = new HashSet<ProductImage>();
   

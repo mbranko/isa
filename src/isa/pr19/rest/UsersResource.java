@@ -12,9 +12,9 @@ import isa.pr19.dao.UserDao;
 import isa.pr19.entity.User;
 
 @Path("/users")
-@Produces({MediaType.APPLICATION_JSON})
-@Consumes({MediaType.APPLICATION_JSON})
-public class UserService {
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
+public class UsersResource {
   
   @EJB
   UserDao userDao;

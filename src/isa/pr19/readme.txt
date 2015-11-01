@@ -17,6 +17,7 @@ Primer kompletne web aplikacije koja se sastoji iz sledecih delova:
 - servleti koji predstavljaju kontrolere u web aplikaciji sa MVC arhitekturom, 
   pristupaju SLSB-ovima i entitijima
 - JSP stranice koje predstavljaju prikaze (view) u MVC modelu
+- REST API za udaljene klijente
 - konfiguracioni fajlovi za razlicite delove sistema
 
 3. Sadrzaj primera
@@ -26,12 +27,30 @@ dao.*         - SLSB-ovi koji implementiraju pristup bazi
 session.*     - SLSB-ovi za procesiranje placanja
 jsp.*         - JSP stranice kao view iz MVC modela
 servlet.*     - servleti kao kontroleri iz MVC modela
-manifest.*    - konfiguracioni fajlovi
+rest.*        - resursi za REST API
 
 4. Pokretanje primera
 ---------------------
-1. Iskopirati easybeans.xml u $CATALINA_HOME/webapps/ow2-easybeans-hibernate-1.1.0/WEB-INF/classes
-2. Iskopirati mysql-connector-java-5.1.18-bin.jar u u $CATALINA_HOME/webapps/ow2-easybeans-hibernate-1.1.0/WEB-INF/lib
-3. ant deploy
+1. Iskopirati MySQL JDBC drajver u $CATALINA_HOME/lib
+2. Iskopirati Jackson JSON parser u $CATALINA_HOME/lib
+3. ant build
 4. http://localhost:8080/pr19/
-(obratite paznju na sadrzaj fajla build.properties, treba podesiti direktorijume)
+(obratite paznju na sadrzaj fajla tomee.properties, treba podesiti direktorijume)
+5. isprobati API na http://localhost:8080/
+- GET /pr19/api/users/login
+- GET /pr19/api/orders/1
+- POST /pr19/api/orders sa telom:
+{
+  "user": { "id": 1},
+  "date": 1416986925000,
+  "items": [
+    {
+      "quantity": 2,
+      "product": { "id": 1}
+    },
+    {
+      "quantity": 5,
+      "product": { "id": 2}
+    }
+  ]
+}

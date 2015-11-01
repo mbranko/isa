@@ -10,10 +10,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
 @Table(name="suppliers")
 public class Supplier implements Serializable {
@@ -29,6 +36,7 @@ public class Supplier implements Serializable {
   @Column(name="sup_address", unique=false, nullable=false)
   private String address;
   
+  @JsonManagedReference("supplier-product")
   @OneToMany(cascade={ALL}, fetch=LAZY, mappedBy="supplier")
   private Set<Product> products = new HashSet<Product>();
 

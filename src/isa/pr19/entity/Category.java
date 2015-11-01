@@ -12,10 +12,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
 @Table(name="categories")
 public class Category implements Serializable {
@@ -31,13 +39,16 @@ public class Category implements Serializable {
   @Column(name="cat_desc", unique=false, nullable=true)
   private String description;
 
+  @JsonBackReference("category-category")
   @ManyToOne
   @JoinColumn(name="parent_cat_id", referencedColumnName="category_id", nullable=true)
   private Category parent;
   
+  @JsonManagedReference("category-category")
   @OneToMany(cascade={ALL}, fetch=LAZY, mappedBy="parent")
   private Set<Category> children = new HashSet<Category>();
   
+  @JsonManagedReference("category-product")
   @OneToMany(cascade={ALL}, fetch=LAZY, mappedBy="category")
   private Set<Product> products = new HashSet<Product>();
   
