@@ -2,15 +2,13 @@
 <web-app
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xmlns="http://java.sun.com/xml/ns/javaee" 
-    xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
     id="pr19" 
     version="3.0">
   <display-name>primer 19</display-name>
 
   <filter>
-    <description>Filter koji redirektuje neulogovane korisnike na
-      login.jsp stranicu</description>
+    <description>Filter koji redirektuje neulogovane korisnike na login.jsp stranicu</description>
     <display-name>Authorization Filter</display-name>
     <filter-name>AuthorizationFilter</filter-name>
     <filter-class>isa.pr19.servlet.AuthorizationFilter</filter-class>
@@ -72,12 +70,4 @@
     <url-pattern>/pay</url-pattern>
   </servlet-mapping>
 
-  <!-- 
-  <resource-ref>  
-    <description>Nas data source</description>  
-    <res-ref-name>jdbc/WebShop</res-ref-name>  
-    <res-type>javax.sql.DataSource</res-type>  
-    <res-auth>Container</res-auth>  
-  </resource-ref>
-  -->
 </web-app>

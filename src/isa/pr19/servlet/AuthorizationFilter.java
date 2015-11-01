@@ -30,9 +30,16 @@ public class AuthorizationFilter implements Filter {
       FilterChain chain) throws ServletException, IOException {
     HttpServletRequest req = (HttpServletRequest)request;
     
-    // ako se pristupa login stranici ili servletu, ne diraj nista
-    if (req.getRequestURI().indexOf("login") != -1) {
-      chain.doFilter(request, response);
+    String path = req.getRequestURI();
+    // ako se pristupa REST API-ju ne diraj nista
+    if (path.indexOf("/api") != -1) {
+      chain.doFilter(req, response);
+      return;
+    }
+
+    // ako se pristupa login stranici ili servletu ne diraj nista
+    if (path.indexOf("/login") != -1) {
+      chain.doFilter(req, response);
       return;
     }
     

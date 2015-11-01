@@ -486,11 +486,13 @@
       <fileset dir="src/isa/pr19" includes="*.jsp"/>
       <classes dir="bin" includes="isa/pr19/**/*.class"/>
       <lib dir="lib/runtime/jdbc" includes="mysql-*.jar"/>
+      <lib dir="lib/runtime/json" includes="*.jar"/>
       <metainf dir="src/isa/pr19">
         <include name="persistence.xml"/>
       </metainf>
-      <webinf dir="src/isa/pr19">
+      <webinf dir="src/isa/pr19/rest">
         <include name="resources.xml"/>
+        <include name="openejb-jar.xml"/>
       </webinf>
     </war>
   </target>
@@ -558,5 +560,11 @@
       <fileset dir="dist" includes="**/*.war"/>
     </copy>
   </target>
+	
+	<target name="deploy19" depends="pr19">
+    <copy todir="${tomee.dir}/webapps">
+      <fileset dir="dist/pr19" includes="*.war"/>
+    </copy>
+	</target>
 
 </project>
