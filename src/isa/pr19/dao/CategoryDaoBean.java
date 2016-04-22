@@ -22,6 +22,9 @@ public class CategoryDaoBean extends GenericDaoBean<Category, Integer> implement
   public Category loadWithChildren(int categoryId) {
     Query q = em.createQuery("SELECT DISTINCT c FROM Category c LEFT JOIN FETCH c.children LEFT JOIN FETCH c.products WHERE c.id=:id");
     q.setParameter("id", categoryId);
+    //Category c = em.find(Category.class, categoryId);
+    //c.getProducts();
+    //c.getChildren();
     Category result = (Category)q.getSingleResult();
     return result;
   }

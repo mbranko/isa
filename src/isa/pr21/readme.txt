@@ -19,6 +19,4 @@ pessimistic.*  - primer sa pesimistickim zakljucavanjem
 
 4. Pokretanje primera
 ---------------------
-[dist/pr21] java -jar pr21-optimistic.jar
-[dist/pr21] java -jar pr21-pessimistic.jar
-
+[dist/pr21] java -jar pr21.jar
