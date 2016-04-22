@@ -37,8 +37,8 @@ public class Test {
           em.getTransaction().commit();
           em.close();
         } catch (Exception e) {
-          System.out.println("[Thread 1] " + e.getMessage());
-          e.printStackTrace();
+          System.out.println("GRESKA!!! [Thread 1] " + e.getMessage());
+          //e.printStackTrace();
         }
       }
     };
@@ -65,8 +65,8 @@ public class Test {
           em.getTransaction().commit();
           em.close();
         } catch (Exception e) {
-          System.out.println("[Thread 2] " + e.getMessage());
-          e.printStackTrace();
+          System.out.println("GRESKA!!! [Thread 2] " + e.getMessage());
+          //e.printStackTrace();
         }
       }
     };
