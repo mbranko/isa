@@ -32,3 +32,10 @@ U klijentski deo ulaze:
 ---------------------
 []$ ant deploy
 [dist/pr05]$ java -jar Client.jar
+
+5. TomEE 7.0.x podesavanje
+--------------------------
+U fajlu conf/system.properties treba da stoje sledeca tri parametra:
+tomee.remote.support = true
+tomee.serialization.class.blacklist = -
+tomee.serialization.class.whitelist = *
